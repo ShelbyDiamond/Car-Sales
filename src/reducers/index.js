@@ -19,10 +19,18 @@ const initialState = {
 
 export const clunckerReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_FEATURE":
+      return {
+        ...state,
+        features: [...state, action.payload]
+      }
+
+    case "REMOVE_FEATURE":
+      return {
+        ...state,
+        features: !state.features
+      }
     default:
       return state
   }
 }
-
-// Write a case for "UPDATE_TITLE"
-// update the title property in state
