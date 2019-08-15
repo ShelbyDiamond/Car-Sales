@@ -17,8 +17,8 @@ const initialState = {
   ]
 }
 
-export const clunckerReducer = (state = initialState, action) => {
-  const updatedPrice = [state.additionalPrice]
+const clunckerReducer = (state = initialState, action) => {
+  console.log("action", action)
 
   switch (action.type) {
     case "ADD_FEATURE":
@@ -69,3 +69,5 @@ export const clunckerReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export default clunckerReducer
