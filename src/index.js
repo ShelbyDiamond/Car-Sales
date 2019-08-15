@@ -5,7 +5,7 @@ import App from "./App"
 //import createStore and provider
 import { createStore } from "redux"
 import { Provider } from "react-redux"
-import { clunckerReducer } from "./reducers"
+import clunckerReducer from "./reducers"
 import "bulma/css/bulma.css"
 import "./styles.scss"
 

@@ -23,48 +23,30 @@ const clunckerReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_FEATURE":
       console.log(state.car)
-      const store = state.carStore.filter(feature => feature !== action.payload)
-
-      return {
-        ...state,
-        car: {
-          ...state.car,
-          features: [...state, state.car.features, action.payload]
+      if (state.car.features.find(feature => feature.id === action.payload.id))
+        return {
+          ...state,
+          car: {
+            ...state.car,
+            price: state.car.price + action.payload.price,
+            features: [...state, state.car.features, action.payload]
+          }
         }
-      }
 
     case "REMOVE_FEATURE":
-      const newestStore = [...state.carStore, action.payload]
       return {
         ...state,
         car: {
           ...state.car,
+          price: state.car.price - action.payload.price,
           features: state.car.features.filter(
             filter(item => {
               return item !== action.payload
             })
           )
-        },
-        Store: newestStore
+        }
       }
 
-    case "ADD_ADDITIONAL_PRICE":
-      const priceIncrease = (number, total) => {
-        return number + total
-      }
-      return {
-        ...state,
-        additionalPrice: updatedPrice.reduce(priceIncrease, action.payload)
-      }
-
-    case "REMOVE_ADDITIONAL_PRICE":
-      const priceDecrease = (number1, total) => {
-        return total - number1
-      }
-      return {
-        ...state,
-        additionalPrice: updatedPrice.reduce(priceDecrease, action.payload)
-      }
     default:
       return state
   }

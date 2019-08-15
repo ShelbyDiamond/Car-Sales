@@ -4,7 +4,10 @@ const AddedFeature = props => {
   return (
     <li>
       {/* Add an onClick to run a function to remove a feature */}
-      <button className="button" onClick={() => {}}>
+      <button
+        className="button"
+        onClick={() => props.removeFeature(props.feature)}
+      >
         X
       </button>
       {props.feature.name}
@@ -13,9 +16,3 @@ const AddedFeature = props => {
 }
 
 export default AddedFeature
-
-// onClick={() => {
-//   props.updateTitle(newTitleText);
-//   setNewTitleText('');
-// }}
-// >

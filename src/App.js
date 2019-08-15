@@ -7,16 +7,21 @@ import { connect } from "react-redux"
 import { removeFeature, buyFeature } from "./actions"
 
 const App = props => {
-  const {state, removeFeature, buyFeature} = props
- 
+  console.log(props)
+  const { state, removeFeature, buyFeature } = props
+
   return (
     <div className="boxes">
       <div className="box">
         <Header car={state.car} />
-        <AddedFeatures car={state.car} />
+        <AddedFeatures car={state.car} removeFeature={removeFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures carStore={state.carStore} />
+        <AdditionalFeatures
+          carStore={state.carStore}
+          buyFeature={buyFeature}
+          removeFeature={removeFeature}
+        />
         <Total car={state.car} additionalPrice={state.additionalPrice} />
       </div>
     </div>
@@ -24,9 +29,7 @@ const App = props => {
 }
 const mapStateToProps = state => {
   return {
-    car = state.car,
-    carStore= state.carStore,
-    additionalPrice= state.additionalPrice
+    state: state
   }
 }
 
