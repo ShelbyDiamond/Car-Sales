@@ -18,8 +18,6 @@ const initialState = {
 }
 
 const clunckerReducer = (state = initialState, action) => {
-  console.log("action", action)
-
   switch (action.type) {
     case "ADD_FEATURE":
       console.log(state.car)
@@ -32,21 +30,16 @@ const clunckerReducer = (state = initialState, action) => {
             features: [...state, state.car.features, action.payload]
           }
         }
-
+      break
     case "REMOVE_FEATURE":
       return {
         ...state,
         car: {
           ...state.car,
           price: state.car.price - action.payload.price,
-          features: state.car.features.filter(
-            filter(item => {
-              return item !== action.payload
-            })
-          )
+          features: state.car.features.filter(item => item !== action.payload)
         }
       }
-
     default:
       return state
   }
