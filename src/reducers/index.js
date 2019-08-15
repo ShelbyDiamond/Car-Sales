@@ -18,11 +18,19 @@ const initialState = {
 }
 
 export const clunckerReducer = (state = initialState, action) => {
+  const updatedPrice = [state.additionalPrice]
+
   switch (action.type) {
     case "ADD_FEATURE":
+      console.log(state.car)
+      const store = state.carStore.filter(feature => feature !== action.payload)
+
       return {
         ...state,
-        features: [...state, action.payload]
+        car: {
+          ...state.car,
+          features: [...state, state.car.features, action.payload]
+        }
       }
 
     case "REMOVE_FEATURE":
