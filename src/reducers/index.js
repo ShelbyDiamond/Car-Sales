@@ -34,9 +34,36 @@ export const clunckerReducer = (state = initialState, action) => {
       }
 
     case "REMOVE_FEATURE":
+      const newestStore = [...state.carStore, action.payload]
       return {
         ...state,
-        features: !state.features
+        car: {
+          ...state.car,
+          features: state.car.features.filter(
+            filter(item => {
+              return item !== action.payload
+            })
+          )
+        },
+        Store: newestStore
+      }
+
+    case "ADD_ADDITIONAL_PRICE":
+      const priceIncrease = (number, total) => {
+        return number + total
+      }
+      return {
+        ...state,
+        additionalPrice: updatedPrice.reduce(priceIncrease, action.payload)
+      }
+
+    case "REMOVE_ADDITIONAL_PRICE":
+      const priceDecrease = (number1, total) => {
+        return total - number1
+      }
+      return {
+        ...state,
+        additionalPrice: updatedPrice.reduce(priceDecrease, action.payload)
       }
     default:
       return state
